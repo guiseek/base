@@ -1,0 +1,59 @@
+<div class="base-container">
+  <mat-toolbar>
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+      *ngIf="isHandset$ | async"
+    >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <a mat-button routerLink="/">
+      <h2>Base</h2>
+    </a>
+
+    <span class="spacer"></span>
+
+    <ng-container *ngIf="authFacade.user$ | async as user">
+      <button
+        class="sidenav-toolbar-button"
+        mat-button
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+        <span>{{user.username}}</span>
+      </button>
+      <mat-menu class="sidenav-toolbar-menu" #menu="matMenu">
+        <button mat-menu-item disabled>{{user.email}}</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="authFacade.logout()">Sair</button>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar>
+  <mat-sidenav-container
+    class="sidenav-container"
+    [class.geo-is-mobile]="isHandset$ | async"
+  >
+    <mat-sidenav
+      #drawer
+      class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+    >
+      <mat-nav-list>
+        <a mat-list-item routerLink="/">Dashboard</a>
+        <a mat-list-item routerLink="/products">Produtos</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <mat-toolbar color="primary">
+        <h1>Loja</h1>
+      </mat-toolbar>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

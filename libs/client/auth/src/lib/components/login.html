@@ -1,0 +1,37 @@
+<form id="auth-login" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label> Usuário </mat-label>
+    <input
+      matInput
+      type="text"
+      autofocus
+      id="username"
+      formControlName="username"
+      autocomplete="username"
+    />
+    <mat-error *ngIf="form.controls.username.errors">
+      <span *ngIf="form.controls.username.hasError('required')">
+        Nome de usuário obrigatório
+      </span>
+      <span *ngIf="form.controls.username.hasError('username')">
+        Este nome de usuário já existe
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label> Senha </mat-label>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      id="current-password"
+      autocomplete="current-password"
+    />
+    <mat-error *ngIf="form.controls.password.errors">
+      Senha inválida
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-stroked-button>Login</button>
+</form>

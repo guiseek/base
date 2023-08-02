@@ -1,0 +1,11 @@
+:host {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+
+  .mdc-card {
+    overflow: hidden;
+  }
+}

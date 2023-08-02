@@ -1,0 +1,29 @@
+body .sidenav-toolbar-menu,
+body .mat-mdc-menu-panel {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+body .mat-mdc-menu-content {
+  padding-top: 0;
+}
+
+body {
+  .cdk-column-id {
+    max-width: 60px;
+  }
+  .cdk-column-price {
+    max-width: 150px;
+  }
+  .cdk-column-stock,
+  .cdk-column-rating {
+    max-width: 100px;
+  }
+
+  [role='row'].cdk-row {
+    transition: background-color 300ms ease-in-out;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}

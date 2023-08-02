@@ -1,0 +1,21 @@
+<section class="mat-elevation-z2">
+  <mat-card>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Login">
+        <auth-login (authSubmit)="auth.login($event)"> </auth-login>
+      </mat-tab>
+
+      <mat-tab label="Register">
+        <auth-register (authSubmit)="auth.register($event)"> </auth-register>
+      </mat-tab>
+    </mat-tab-group>
+
+    <ng-container *ngIf="state.pick('error') | async as error">
+      <mat-error>{{ error }}</mat-error>
+    </ng-container>
+
+    <ng-container *ngIf="state.pick('user') | async as user">
+      <pre>{{ user | json }}</pre>
+    </ng-container>
+  </mat-card>
+</section>

@@ -1,0 +1,53 @@
+<form id="auth-register" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label> Endereço de e-mail </mat-label>
+    <input
+      matInput
+      type="email"
+      autofocus
+      formControlName="email"
+      autocomplete="email"
+    />
+    <mat-error *ngIf="form.controls.email.errors">
+      <span *ngIf="form.controls.email.hasError('required')">
+        Endereço de e-mail obrigatório
+      </span>
+      <span *ngIf="form.controls.email.hasError('email')">
+        Endereço de e-mail inválido
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label> Usuário </mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="username"
+      autocomplete="username"
+    />
+    <mat-error *ngIf="form.controls.username.errors">
+      <span *ngIf="form.controls.username.hasError('required')">
+        Nome de usuário obrigatório
+      </span>
+      <span *ngIf="form.controls.username.hasError('username')">
+        Este nome de usuário já existe
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label> senha </mat-label>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      autocomplete="current-password"
+    />
+    <mat-error *ngIf="form.controls.password.errors">
+      Senha inválida
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-stroked-button>Register</button>
+</form>
